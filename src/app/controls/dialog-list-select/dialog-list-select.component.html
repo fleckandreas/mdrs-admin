@@ -1,0 +1,16 @@
+<div class="dialog">
+<h2 mat-dialog-title translate>{{data.Title}}</h2>
+<mat-dialog-content>
+    <app-action-list [filteredData]="filteredList" [rawData]="data.List"></app-action-list>   
+  <mat-list #list>
+  <mat-list-item *ngFor="let d of filteredList">
+    <mat-checkbox [(ngModel)]="d.Selected" > {{d.Label}}</mat-checkbox>
+  </mat-list-item>
+  </mat-list>
+</mat-dialog-content>
+<mat-dialog-actions >
+  <button mat-button mat-dialog-close>{{ 'Common.Cancel' | translate }}</button>
+  <!-- Can optionally provide a result for the closing dialog. -->
+  <button mat-button (click)="closeDialog()" >{{ 'Common.Apply' | translate }}</button>
+</mat-dialog-actions>
+</div>

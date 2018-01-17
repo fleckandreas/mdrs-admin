@@ -1,0 +1,22 @@
+<div class="scopegroups" *ngIf="catalogController && scopeGroupsView">
+  <h4>{{ 'Catalog.ScopeGroups' | translate }}</h4>
+  <div class="innercontainer"  >
+    <div class="menu" *ngIf="catalogController.AccessControl.isAdmin">
+      <button mat-button (click)="addScopeGroup()">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-button (click)="deleteScopeGroup()">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <app-action-list [sortOptions]="sortOptions" [filteredData]="filteredScopeGroups" [rawData]="scopeGroupsView"></app-action-list>   
+    </div>
+    <mat-accordion class="headers-align">
+      <mat-expansion-panel  [expanded]="selectedItem == item.data" *ngFor="let item of filteredScopeGroups;let i = index;trackBy:trackFn" id="acc_{{i}}">
+        <mat-expansion-panel-header>
+          <label>{{item.Label}} ({{item.Key}})</label>          
+        </mat-expansion-panel-header>
+        <app-dyn-properties-list  [isreadonly]="!item.data.AccessControl.isAdmin"  [modelController]="item.data" [model]="item.data.Data" [modeltype]="'ScopeGroup'"></app-dyn-properties-list>        
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

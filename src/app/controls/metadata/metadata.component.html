@@ -1,0 +1,35 @@
+<div class="metadata" *ngIf="metadata">
+  <h4>{{ 'Catalog.Metadata' | translate }}</h4>
+  <div class="innercontainer">
+    <div class="menu" *ngIf="!isreadonly">
+      <button mat-button (click)="addMetadata()">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-button (click)="deleteMetadata()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <mat-accordion class="headers-align">
+      <mat-expansion-panel [expanded]="item == selectedItem" *ngFor="let item of metadata;let i = index" id="acc_{{i}}">
+        <mat-expansion-panel-header>
+          ({{item.Language}}) {{item.Label}}
+        </mat-expansion-panel-header>
+        <app-dyn-properties-list  [isreadonly]="isreadonly"  [modelController]="modelController" [model]="item" [modeltype]="'Metadata'"></app-dyn-properties-list>                  
+        <!--<mat-form-field>
+          <mat-select [disabled]="isreadonly" (selectionChange)="onValueChange()" placeholder="{{ 'Common.Language' | translate }}"
+            [(ngModel)]="item.Language">
+            <mat-option *ngFor="let lang of languages" [value]="lang.Code">{{ lang.Label }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="formfield-full-width">
+          <input [disabled]="isreadonly" (input)="onValueChange()" autocomplete="off" spellcheck="off" required matInput placeholder="{{ 'Common.Label' | translate }}"
+            type="text" [(ngModel)]="item.Label">
+        </mat-form-field>
+        <mat-form-field class="formfield-full-width">
+          <textarea [disabled]="isreadonly" (input)="onValueChange()" matInput placeholder="{{ 'Common.Description' | translate }}"
+            type="text" [(ngModel)]="item.Description"></textarea>
+        </mat-form-field>-->
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

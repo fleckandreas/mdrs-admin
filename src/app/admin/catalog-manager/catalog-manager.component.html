@@ -1,0 +1,26 @@
+<div class="module catalog-manager" >
+  <div class="menu">
+    <button mat-button (click)="addCatalogContainer()">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button *ngIf="currentCatalogController" mat-button (click)="deleteCatalogContainer(currentCatalogController)" class="deletebutton">
+        <mat-icon>delete</mat-icon>
+      </button>    
+  </div>
+  <mat-sidenav-container>
+      <mat-sidenav mode="side" opened="true">
+      <mat-list>
+      <mat-list-item (click)="currentCatalogController = catalogController" *ngFor="let catalogController of catalogControllerList;trackBy:trackFn">
+       <span appMetadataLabelByLanguage [metadata]="catalogController.Data.CatalogMetadata.Metadata"></span>
+      </mat-list-item>
+      </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div *ngIf="currentCatalogController"> 
+       <!-- <app-catalogcontainer [catalogController]="currentCatalogController"></app-catalogcontainer>-->
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
+    
+</div>

@@ -1,0 +1,7 @@
+.modulemenu mat-list-item{
+    font-size: smaller;
+}
+.spacer {
+    flex: 1 1 auto;
+  }
+  

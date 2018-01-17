@@ -1,0 +1,37 @@
+<div >
+  <div style="width:100vw;height:100vh;display:flex;flex-direction:column"  >
+    <div *ngIf="authentificationService.isLoggedIn" style="flex:0 1;height:75px;;width:100%;color:#fff">
+        <mat-toolbar color="primary">
+            <span>MDRS-Admin</span>
+            <a mat-button routerLink="/" routerLinkActive="active">
+              <mat-icon>dashboard</mat-icon>
+            </a> 
+            <button mat-button  (click)="back()">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+            <button mat-button color="info"  (click)="save()">
+                <mat-icon>save</mat-icon> ({{unsaved}})
+            </button>
+            <span class="spacer"></span>
+            <button mat-button  [matMenuTriggerFor]="appMenuUser">
+                <mat-icon>person</mat-icon>
+              </button>
+              <mat-menu #appMenuUser="matMenu" [overlapTrigger]="false">
+                <span>{{dataConnectorService.user.Name}}</span>
+                <button mat-menu-item (click)="changePassword()"> change Password </button>
+                <button mat-menu-item (click)="authentificationService.logout()"> Logout </button>
+              </mat-menu>
+        </mat-toolbar>     
+    </div>
+    
+    <div  style="flex: 1;overflow:hidden;overflow-y: auto;">     
+      <div style="padding:10px;">
+          <router-outlet></router-outlet>
+      </div>
+     
+    </div>
+  </div>
+</div>
+<div >
+  
+</div>

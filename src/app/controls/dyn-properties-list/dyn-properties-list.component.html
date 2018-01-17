@@ -1,0 +1,51 @@
+<div *ngIf="model && modeltype">
+  <div *ngFor="let property of dynProperties">
+    <div [ngSwitch]="property.Control">
+      <mat-form-field *ngSwitchCase="'string'" class="formfield-full-width">
+        <mat-label translate>DynProperties.{{property.Name}}</mat-label>
+        <input [disabled]="isreadonly" matInput autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" type="text"
+          class="form-control" (input)="onChange(property.Name)" [(ngModel)]="model[property.Name]">
+      </mat-form-field>
+      <mat-form-field *ngSwitchCase="'string_ro'" class="formfield-full-width">
+        <mat-label translate>DynProperties.{{property.Name}}</mat-label>
+        <input disabled matInput type="text" class="form-control" [ngModel]="model[property.Name]">
+      </mat-form-field>
+      <mat-form-field *ngSwitchCase="'string_multiline'" class="formfield-full-width">
+          <mat-label translate>DynProperties.{{property.Name}}</mat-label>
+          <textarea [disabled]="isreadonly" matInput type="text" class="form-control" (input)="onChange(property.Name)"  [(ngModel)]="model[property.Name]"></textarea>
+        </mat-form-field>
+      <app-html-editor *ngSwitchCase="'html'" [modelController]="modelController" [content]="model" ></app-html-editor>
+      <div class="section"  *ngSwitchCase="'checkbox'">
+      <mat-checkbox [disabled]="isreadonly" (change)="onChange(property.Name)" [(ngModel)]="model[property.Name]">
+        <span translate="">DynProperties.{{property.Name}}</span>
+      </mat-checkbox>
+    </div>
+      <div *ngSwitchCase="'metadata'">
+        <app-metadata [isreadonly]="isreadonly" [modelController]="modelController" [metadata]="model.Metadata"></app-metadata>
+      </div>
+      <div *ngSwitchCase="'singleselect'">
+      <mat-form-field  *ngIf="options">
+        <mat-label translate>DynProperties.{{property.Name}}</mat-label>
+        <mat-select  [disabled]="isreadonly" (selectionChange)="onChange(property.Name)" [(ngModel)]="model[property.Name]">
+          <mat-option></mat-option>
+          <mat-option *ngFor="let option of options[property.Name];trackBy:trackFn" [value]="option.value">
+            {{option.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+      <div class="formfield-full-width" *ngSwitchCase="'multiselect'">
+          <div *ngIf="options">            
+          <mat-form-field style="width:70%;display:inline-block;">
+          <mat-label translate>DynProperties.{{property.Name}}</mat-label>
+          <input type="text" disabled matInput [value]="getRefAsString(property.Name,property.Type)" >                
+          </mat-form-field>
+          <div style="width:10%;display:inline-block;">
+          <button *ngIf="!isreadonly" mat-button (click)="manageRef(property.Name,property.Type)">
+            <mat-icon>edit</mat-icon>
+            {{ 'Common.Edit' | translate }}</button>
+        </div>      
+      </div>
+    </div>
+  </div>
+</div>

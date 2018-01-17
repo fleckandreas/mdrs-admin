@@ -1,0 +1,35 @@
+
+<div class="module settings">
+
+
+    <mat-tab-group>
+      <mat-tab label="{{ 'Common.PropertyTypes' | translate }}">
+        <div *ngIf="settings" class="innercontainer">
+<div class="menu">
+  <button mat-button (click)="addPropertyType()">
+    <mat-icon>add</mat-icon>
+  </button>
+  <button mat-button (click)="deletePropertyType()">
+    <mat-icon>delete</mat-icon>
+  </button>
+  <app-action-list  [filteredData]="propertyTypesFiltered" [rawData]="propertyTypesView"></app-action-list>      
+</div>
+<mat-list>
+  <mat-list-item *ngFor="let pt of propertyTypesFiltered">
+    {{pt.Label}}
+  </mat-list-item>
+</mat-list>
+</div>
+</mat-tab>
+<mat-tab label="{{ 'Common.EmailSettings' | translate }}">
+    <div *ngIf="settings" class="innercontainer">
+        <app-dyn-properties-list [isreadonly]="false" [modelController]="settingsController" [model]="settings.EmailSettings" [modeltype]="'EmailSettings'" ></app-dyn-properties-list>               
+    </div>
+</mat-tab>
+<mat-tab label="{{ 'Common.AppSettings' | translate }}">
+    <div *ngIf="settings" class="innercontainer">
+        <app-dyn-properties-list [isreadonly]="false" [modelController]="settingsController" [model]="settings.AppSettings" [modeltype]="'AppSettings'" ></app-dyn-properties-list>               
+    </div>
+</mat-tab>
+</mat-tab-group>
+</div>

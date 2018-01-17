@@ -1,0 +1,32 @@
+<div class="module user-manager" *ngIf="userData">
+    <div class="menu">
+      <!--<button mat-button (click)="save()">
+        <mat-icon>save</mat-icon>
+      </button>-->
+      <button mat-button (click)="addUser()">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button *ngIf="currentUser" mat-button (click)="deleteUser(currentUser)" class="deletebutton">
+          <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+    <mat-sidenav-container>
+        <mat-sidenav mode="side" opened="true">
+        <mat-list>
+        <mat-list-item (click)="currentUser = user" *ngFor="let user of userData;trackBy:trackFn">
+          {{user.Data.Name}}
+        </mat-list-item>
+        </mat-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <div  class="user-container">
+          <div *ngIf="currentUser">
+          <app-dyn-properties-list [isreadonly]="false" [modelController]="currentUser" [model]="currentUser.Data" [modeltype]="'User'" ></app-dyn-properties-list>          
+        </div>
+      </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+
+      
+  
+  </div>

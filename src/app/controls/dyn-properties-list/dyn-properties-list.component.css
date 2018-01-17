@@ -1,0 +1,10 @@
+.mat-input-element:disabled{
+    color: rgba(0,0,0,1);
+    font-weight: 400;
+}
+.section {
+    display: flex;
+    align-content: start;
+    align-items: start;
+    height: 60px;
+  }

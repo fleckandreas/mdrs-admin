@@ -1,0 +1,21 @@
+<div class="scopes" *ngIf="catalogController && scopesView">
+  <h4>{{ 'Catalog.Scopes' | translate }}</h4>
+  <div class="innercontainer">
+    <div class="menu">
+      <div class="buttons" *ngIf="catalogController.AccessControl.isAdmin">
+      <button mat-button (click)="addScope()">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-button (click)="deleteScope()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div> 
+        <app-action-list [sortOptions]="sortOptions" [filteredData]="filteredScopes" [rawData]="scopesView"></app-action-list>     
+    </div>
+    <mat-nav-list>
+        <a mat-list-item routerLink="scope/{{element.data.DBUID}}" *ngFor="let element of filteredScopes;trackBy:trackFn">
+          <label>{{element.Label}} ({{element.Key}})</label>
+        </a>
+      </mat-nav-list>
+  </div>
+</div>

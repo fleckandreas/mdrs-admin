@@ -1,0 +1,38 @@
+<div class="module catalogs">
+    <div class="menu">
+        <button mat-button (click)="addCatalog()">
+          <mat-icon>add</mat-icon>
+        </button>
+        <button mat-button (click)="fileinput.click()" class="deletebutton">
+            <mat-icon class="smallicon">add</mat-icon>
+            <mat-icon>insert_drive_file</mat-icon>
+        </button>
+        <button mat-button (click)="deleteCatalog()" class="deletebutton">
+            <mat-icon>delete</mat-icon>
+        </button>
+        
+        <input style="display:none;" #fileinput type="file" (change)="onChange($event)">    
+      </div>
+  
+  <app-action-list [filteredData]="filteredCatalogs" [rawData]="catalogControllerViewList"></app-action-list>   
+  <h3>Deine Kataloge</h3>    
+  <mat-nav-list>
+     <div *ngFor="let catalogControllerView of filteredCatalogs;trackBy:trackFn">
+      <a  mat-list-item  *ngIf="catalogControllerView.data.AccessControl.isAdmin || catalogControllerView.data.AccessControl.isEditor" routerLink="/catalog/{{catalogControllerView.data.DBUID}}"> 
+      <h4 matLine appMetadataLabelByLanguage [metadata]=" catalogControllerView.data.Data.CatalogMetadata.Metadata">
+      </h4>
+      <p class="smalltext" matLine>{{ 'DynProperties.Owner' | translate }} {{ catalogControllerView.data.Data.Owner}} |  {{ 'Common.lastChange' | translate }}: {{ catalogControllerView.data.Data.LastChange}} </p>      
+    </a>
+  </div>
+  </mat-nav-list>
+  <h3>andere Kataloge</h3>    
+  <mat-nav-list>
+      <div *ngFor="let catalogControllerView of filteredCatalogs;trackBy:trackFn">
+       <a  mat-list-item  *ngIf="!catalogControllerView.data.AccessControl.isAdmin && !catalogControllerView.data.AccessControl.isEditor" routerLink="/catalog/{{catalogControllerView.data.DBUID}}"> 
+       <h4 matLine appMetadataLabelByLanguage [metadata]=" catalogControllerView.data.Data.CatalogMetadata.Metadata">
+       </h4>
+       <p class="smalltext" matLine>{{ 'DynProperties.Owner' | translate }} {{ catalogControllerView.data.Data.Owner}} |  {{ 'Common.lastChange' | translate }}: {{ catalogControllerView.data.Data.LastChange}} </p>       
+     </a>
+   </div>
+   </mat-nav-list>
+</div>

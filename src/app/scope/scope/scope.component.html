@@ -1,0 +1,35 @@
+<div class="module scope" *ngIf="scopeController">
+  <div class="innercontainer">
+    <label style="font-weight:bold" appMetadataLabelByLanguage [metadata]="scopeController.Data.Metadata"></label>
+  </div>
+  <mat-tab-group [selectedIndex]="selectedTabIndex" (selectedTabChange)="tabChange($event)">
+    <mat-tab label="{{ 'Catalog.Metadata' | translate }}">
+      <div class="innercontainer" *ngIf="selectedTabIndex == 0">
+        <app-dyn-properties-list [isreadonly]="!scopeController.AccessControl.isEditor" [modelController]="scopeController" [model]="scopeController.Data"
+          [modeltype]="'Scope'"></app-dyn-properties-list>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="{{ 'Catalog.Properties' | translate }}">
+      <div class="innercontainer">
+        <div class="menu" >
+          <div class="buttons" *ngIf="catalogController.AccessControl.isAdmin">
+          <button mat-button (click)="addRefToProperty()">
+            <mat-icon>add</mat-icon>
+          </button>
+          <button mat-button (click)="deleteRefToProperty()">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+          <app-action-list [filteredData]="filteredProperties" [rawData]="propertiesView"></app-action-list>
+        </div>
+        <mat-nav-list>
+            <a mat-list-item routerLink="/catalog/{{catalogController.DBUID}}/property/{{element.data.DBUID}}" *ngFor="let element of filteredProperties;trackBy:trackFn">
+              <label>{{element.Label}}</label>
+            </a>
+          </mat-nav-list>
+      </div>
+      
+    </mat-tab>
+  </mat-tab-group>
+</div>

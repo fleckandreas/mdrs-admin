@@ -1,0 +1,23 @@
+
+<div class="module property" *ngIf="propertyController"  >
+    <div class="innercontainer">
+    <label style="font-weight:bold" appMetadataLabelByLanguage  [metadata]="propertyController.Data.Metadata"></label>
+    </div>
+    <mat-tab-group [selectedIndex]="selectedTabIndex" (selectedTabChange)="tabChange($event)">
+        <mat-tab label="{{ 'Catalog.Metadata' | translate }}">
+          <div class="innercontainer" *ngIf="selectedTabIndex == 0" >
+            <app-dyn-properties-list  [isreadonly]="!propertyController.AccessControl.isEditor"  [modelController]="propertyController" [model]="propertyController.Data" [modeltype]="'PropertyM'"></app-dyn-properties-list>        
+          </div>
+        </mat-tab>
+        <mat-tab label="{{ 'Common.Attributes' | translate }}">
+            <div class="innercontainer" *ngIf="selectedTabIndex == 1">
+             <app-dyn-properties-list  [isreadonly]="!propertyController.AccessControl.isEditor"  [modelController]="propertyController" [model]="propertyController.Data" [modeltype]="'PropertyA'"></app-dyn-properties-list>        
+            </div>
+        </mat-tab>
+        <mat-tab label="{{ 'Catalog.Values' | translate }}">
+            <div class="innercontainer">
+          <app-values *ngIf="selectedTabIndex == 2" [propertyController]="propertyController"></app-values>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+  </div>

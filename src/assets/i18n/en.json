@@ -1,0 +1,76 @@
+{
+    "HOME": {
+      "Start":"Start",  
+      "Admin":"Administration",
+      "SELECT": "Sprache wählen"
+    },
+    "Common": {
+        "Key":"Key",
+        "Language":"Sprache",  
+        "Admin":"Administration",
+        "Catalogs":"Kataloge",
+        "User":"Nutzer",
+        "UID":"UID",
+        "lastChange":"letzte Änderung",
+        "Public":"öffentlich",
+        "Deprecated":"veraltet",
+        "Description":"Beschreibung",
+        "Attributes":"Attribute",
+        "Label":"Bezeichner",
+        "SELECT": "Sprache wählen",
+        "Delete": "Löschen",
+        "Add": "Hinzufügen",
+        "Edit": "Bearbeiten",
+        "Apply": "Übernehmen",
+        "Cancel": "Abbrechen",
+        "Filter":"Filtern",
+        "Settings":"Settings",
+        "PropertyTypes":"PropertyTypes",
+        "isAdmin":"Administrator",
+        "EmailSettings":"Email-Settings"        
+      },
+      "DynProperties":{
+        "isAdmin":"Administrator",
+        "EMail":"EMail",
+        "Name":"Name"
+      },
+    "EmailSettings":{
+      "Title":"Title",
+      "Body":"Body",
+      "From":"From"
+    } ,
+    "Admin":{
+        "CatalogManager": "Katalogmanager",
+        "UserManager": "Nutzerverwaltung",
+        "WebManager": "öffentliche Webseite",
+        "SettingsManager":"Settings",
+        "AdministratedBy": "administriert von",
+        "EditedBy": "bearbeitet von"
+    },
+      "CatalogContainer":{
+        "Owner":"Eigentümer"
+      },
+      "Catalog":{
+        "About":"Über diesen Katalog",
+        "Metadata":"Metadaten",
+        "MainLanguage":"Hauptsprache",
+        "OptionalLanguages":"optional Sprachen",
+        "Scopes":"Bereiche",
+        "Scope":"Bereich",
+        "ScopeGroups":"Bereichsgruppen",
+        "ScopeGroup":"Bereichsgruppe",
+        "Properties":"Eigenschaften",
+        "Property":"Eigenschaft",
+        "Values":"Werte",
+        "Value":"Wert",
+        "Label":"Bezeichner",
+        "Description":"Beschreibung",
+        "Name":"Name",
+        "Public":"öffentlich",
+        "Deprecated":"veraltet",
+        "Type":"Typ",
+        "Language":"Sprache"
+
+      },
+    "LAZY": "Ich bin lazy loaded!"
+  }

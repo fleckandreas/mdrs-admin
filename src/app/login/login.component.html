@@ -1,0 +1,15 @@
+<div class="module login">
+  <div fxFlexLayout="column" fxLayoutAlign="center center"   style="width:100%;margin-top:10vh;"> 
+      
+      <div  (keyup.enter)="login()" style="width:444px;" fxFlexLayout="column">
+      <h2>LOGIN</h2>
+      <mat-form-field style="width:100%">
+      <input matInput placeholder="Name" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="form-control" name="name" [(ngModel)]="username">
+    </mat-form-field>
+      <mat-form-field style="width:100%">
+      <input matInput placeholder="Password" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="form-control" name="password" type="password" [(ngModel)]="password">
+    </mat-form-field>
+      <button [disabled]="username=='' || password==''" mat-raised-button color="primary"   type="submit" (click)="login()"> Login</button>
+      </div>
+      </div>
+</div>

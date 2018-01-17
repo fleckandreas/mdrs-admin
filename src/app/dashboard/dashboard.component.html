@@ -1,0 +1,6 @@
+<div class="module dashboard">
+    <div fxFlexLayout="row" fxLayoutAlign="center center" style="flex-wrap:wrap">
+      <a fxLayoutAlign="center center" class="biglink" routerLink="/catalogs" translate="">Common.Catalogs</a>
+      <a *ngIf="authentificationService.currentUserIsAdmin()" fxLayoutAlign="center center" class="biglink" routerLink="/admin" translate="">Common.Admin</a>      
+    </div>
+  </div>

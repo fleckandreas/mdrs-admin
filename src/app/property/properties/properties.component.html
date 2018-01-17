@@ -1,0 +1,22 @@
+<div class="properties" *ngIf="properties">
+  <h4>{{ 'Catalog.Properties' | translate }}</h4>
+  <div class="innercontainer" *ngIf="!selectedItem">
+    <div class="menu">
+       <div class="buttons" *ngIf="catalogController.AccessControl.isAdmin">
+      <button mat-button (click)="addProperty()">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-button (click)="deleteProperty()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+      <app-action-list [sortOptions]="sortOptions" [filteredData]="filteredProperties" [rawData]="propertiesView"></app-action-list>      
+    </div>
+    <mat-nav-list>
+      <a mat-list-item routerLink="property/{{element.data.DBUID}}" *ngFor="let element of filteredProperties;trackBy:trackFn">
+        <label>{{element.Label}} ({{element.Key}})</label>
+      </a>
+    </mat-nav-list>
+  </div>
+  
+</div>

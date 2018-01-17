@@ -1,0 +1,16 @@
+<div style="display:inline" class="component actionlist">
+    <mat-form-field class="">
+        <input autocomplete="off" autocorrect="off"  spellcheck="off" (input)="filterList(filterinput.value)" #filterinput matInput placeholder="{{ 'Common.Filter' | translate }}" type="text" >
+    </mat-form-field>
+    <mat-form-field *ngIf="sortOptions && sortOptions.length>1" >
+        <mat-select placeholder="Sortierung" (change)="sort()" [(ngModel)]="selectedOption" >
+          <mat-option *ngFor="let option of sortOptions" [value]="option.Key">
+            {{ option.Label }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-radio-group  [(ngModel)]="direction" (change)="sort()">
+        <mat-radio-button value="asc"><mat-icon>arrow_drop_up</mat-icon></mat-radio-button>
+        <mat-radio-button value="desc"><mat-icon>arrow_drop_down</mat-icon></mat-radio-button>
+      </mat-radio-group>
+</div>

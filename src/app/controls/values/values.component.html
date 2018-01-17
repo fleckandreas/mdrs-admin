@@ -1,0 +1,24 @@
+<div class="values" *ngIf="propertyController">
+    <h4>{{ 'Catalog.Values' | translate }}</h4>
+    <div class="innercontainer">
+      <div class="menu" >
+          <div class="buttons" *ngIf="propertyController.AccessControl.isEditor">
+        <button mat-button (click)="addValue()">
+          <mat-icon>add</mat-icon>
+        </button>
+        <button mat-button (click)="deleteValue()">
+            <mat-icon>delete</mat-icon>
+        </button>
+          </div>
+        <app-action-list [sortOptions]="sortOptions" [filteredData]="filteredValues" [rawData]="valuesView"></app-action-list>
+      </div>
+      <mat-accordion class="headers-align" >
+        <mat-expansion-panel  [expanded]="selectedItem == item.data" *ngFor="let item of filteredValues;let i=index" id="val_{{i}}">
+          <mat-expansion-panel-header>
+              <label>{{item.Label}} ({{item.Key}})</label>
+          </mat-expansion-panel-header>
+          <app-dyn-properties-list  [isreadonly]="!propertyController.AccessControl.isEditor"  [modelController]="propertyController" [model]="item.data" [modeltype]="'Value'"></app-dyn-properties-list>                  
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>

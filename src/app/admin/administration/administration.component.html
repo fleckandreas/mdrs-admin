@@ -1,0 +1,27 @@
+<div class="module administration">
+ <!-- <div  fxFlexLayout="row"   fxLayoutAlign="center center" style="flex-wrap:wrap">
+    <a fxLayoutAlign="center center" class="biglink" routerLink="/admin/user" translate="">Admin.UserManager</a>
+    <a fxLayoutAlign="center center" class="biglink" routerLink="/admin/web" translate="">Admin.WebManager</a>
+    <a fxLayoutAlign="center center" class="biglink" routerLink="/admin/settings" translate="">Admin.SettingsManager</a>    
+  </div>-->
+  <mat-tab-group [selectedIndex]="selectedTabIndex" (selectedTabChange)="tabChange($event)">
+    <!-- [(selectedIndex)]="selectedTabIndex" && selectedTabIndex == 1 is a workaround
+    https://github.com/angular/material2/issues/5269
+  -->
+    <mat-tab label="{{ 'Admin.UserManager' | translate }}">
+      <div class="innercontainer" *ngIf="selectedTabIndex==0">
+        <app-user-manager></app-user-manager>
+      </div>
+    </mat-tab>
+    <mat-tab label="{{ 'Admin.WebManager' | translate }}">
+        <div class="innercontainer" *ngIf="selectedTabIndex==1">
+      <app-web-manager></app-web-manager>
+        </div>
+  </mat-tab>
+  <mat-tab label="{{ 'Admin.SettingsManager' | translate }}">
+      <div class="innercontainer" *ngIf="selectedTabIndex==2">
+    <app-settings-manager></app-settings-manager>
+      </div>
+</mat-tab>
+  </mat-tab-group>
+</div>

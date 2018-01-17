@@ -1,0 +1,20 @@
+<div class="module web-manager" *ngIf="webSiteController">
+  <div class="menu">
+    <button mat-button (click)="addContent()"><mat-icon>add</mat-icon></button>
+  </div>
+  <div *ngFor="let content of webSiteController.Data.Content" class="content">
+      <!--<mat-form-field class="formfield-full-width">
+          <input required matInput placeholder="Label" type="text" [(ngModel)]="content.Label">
+        </mat-form-field>
+      <label>{{ 'DynProperty.Language' | translate }}</label>
+      <mat-form-field>
+          <mat-select placeholder="" [(ngModel)]="content.Language">
+            <mat-option *ngFor="let lang of languages" [value]="lang.Code">{{ lang.Label }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+      <app-html-editor [content]="content" ></app-html-editor> -->
+      <button mat-button (click)="deleteContent(content)" class="deletebutton"><mat-icon>delete</mat-icon></button>
+      <app-dyn-properties-list [isreadonly]="false" [modelController]="webSiteController" [model]="content" [modeltype]="'Website'" ></app-dyn-properties-list>               
+  </div>
+</div>

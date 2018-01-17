@@ -1,0 +1,56 @@
+<div class="module catalog" *ngIf="catalog">
+    <div class="menu">
+    </div>
+    <mat-tab-group [selectedIndex]="selectedTabIndex" (selectedTabChange)="tabChange($event)">
+        <!-- [(selectedIndex)]="selectedTabIndex" && selectedTabIndex == 1 is a workaround
+        https://github.com/angular/material2/issues/5269
+      -->
+        <mat-tab label="{{ 'Common.Settings' | translate }}">
+            <!--<app-catalogcontainer [catalogController]="catalogController"></app-catalogcontainer>-->
+            <div *ngIf="selectedTabIndex == 0">
+                    <div class="innercontainer">
+                       <app-dyn-properties-list  [isreadonly]="!catalogController.AccessControl.isAdmin"  [modelController]="catalogController" [model]="catalog" [modeltype]="'CatalogSettings'"></app-dyn-properties-list>
+                    </div>
+                </div>
+        </mat-tab>
+        <mat-tab label="{{ 'Catalog.Metadata' | translate }}">
+            <div *ngIf="selectedTabIndex == 1">
+                <div class="innercontainer">
+                   <app-dyn-properties-list  [isreadonly]="!catalogController.AccessControl.isAdmin"  [modelController]="catalogController" [model]="catalog.CatalogMetadata" [modeltype]="'CatalogMetadata'"></app-dyn-properties-list>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="{{ 'Catalog.ScopeGroups' | translate }}">
+            <app-scope-groups *ngIf="selectedTabIndex == 2" [catalogController]="catalogController"></app-scope-groups>
+        </mat-tab>
+        <mat-tab label="{{ 'Catalog.Scopes' | translate }}">
+            <app-scopes *ngIf="selectedTabIndex == 3" [catalogController]="catalogController"></app-scopes>
+        </mat-tab>
+        <mat-tab label="{{ 'Catalog.Properties' | translate }}">
+            <app-properties *ngIf="selectedTabIndex == 4" [catalogController]="catalogController"></app-properties>
+        </mat-tab>
+        <mat-tab label="{{ 'Catalog.ChangeLog' | translate }}">
+                <div *ngIf="selectedTabIndex == 5">
+                    <app-changelog [catalogController]="catalogController"></app-changelog>
+                </div>
+            </mat-tab>
+        <mat-tab label="tools">
+            <div class="innercontainer">
+                <button mat-button (click)="validateintern()">Validate </button>
+                <button mat-button (click)="validate()">Validate XSD</button>
+                <a mat-button href="{{dwnldUri}}">Download</a>
+                <div *ngIf="errors.length>0">
+                    <mat-list>
+                        <mat-list-item *ngFor="let error of errors">
+                            {{error.level}} | 
+                            {{error.code}} | 
+                            {{error.message}}
+                        </mat-list-item>
+                    </mat-list>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+
+
+</div>
